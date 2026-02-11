@@ -1,29 +1,10 @@
-# Simple Bookkeeping Tool by DataWithMayLauren
-
-def calculate_expenses():
-    print("--- May Lauren's Expense Tracker ---")
-    
-    # 1. Asking for numbers
-    # We use float() so the user can enter decimals like 100.50
-    income = float(input("Enter total monthly income: "))
-    expenses = float(input("Enter total monthly expenses: "))
-    
-    # 2. The Logic
-    profit = income - expenses
-    
-    # Preventing a crash if income is 0
-    if income > 0:
-        savings_rate = (profit / income) * 100
-    else:
-        savings_rate = 0
-    
-    # 3. Showing the results
-    print(f"\n--- Financial Summary ---")
-    print(f"Total Income:  ${income:,.2f}")
-    print(f"Total Expense: ${expenses:,.2f}")
-    print(f"Net Profit:    ${profit:,.2f}")
-    print(f"Savings Rate:  {savings_rate:.2f}%")
-
-# This actually "starts" the program
-if __name__ == "__main__":
-    calculate_expenses()
+name: Run Bookkeeping Tool
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Script
+        # This sends a "fake" input so the script doesn't get stuck waiting for you
+        run: echo "1000 500" | python expense_tracker.py
