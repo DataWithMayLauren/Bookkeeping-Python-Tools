@@ -1,17 +1,9 @@
 name: Run Bookkeeping Tool
 on: [push]
 jobs:
-  run-bookkeeping-job:
+  run-it:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: Run Script
-        # This 'echo' part sends fake numbers so the script doesn't get stuck
-        run: echo "2000 1200" | python expense_tracker.py
+      - uses: actions/checkout@v3
+      - name: Run Python
+        run: python expense_tracker.py
